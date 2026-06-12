@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Private French Travel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', sans-serif; background: #F7F4EF; min-height: 100vh; }
+
+  /* ─────────────────────────────────────────
+     PHOTO SLOTS — replace the 3 URLs below
+     ───────────────────────────────────────── */
+
+  :root {
+    --photo-hero:    url('https://res.cloudinary.com/det6fmvma/image/upload/v1776946785/Design_sans_titre_17_xkf1f5.png');    /* ex: vineyard, Bordeaux skyline */
+    --photo-contact: none; /* ex: Basque coast, wine estate */
+    --photo-footer:  none;  /* ex: Dordogne, market, forest   */
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 380px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background-color: #3C1053;
+    background-image: var(--photo-hero);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(60,16,83,0.20) 0%,
+      rgba(60,16,83,0.52) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    width: 100%; max-width: 520px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 2.75rem;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center;
+  }
+
+  .logo-img {
+    width: 160px; height: auto;
+    margin-bottom: 1.75rem;
+    
+  }
+
+  .gold-line { width: 40px; height: 1px; background: #C9A84C; margin: 0 auto 1.25rem; }
+
+  .hero-intro {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.85;
+    max-width: 340px;
+  }
+
+  .hero-intro em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #C9A84C;
+    font-weight: 400;
+  }
+
+  /* ─── CONTACT SECTION ─── */
+  .contact-section {
+    position: relative;
+    overflow: hidden;
+    background-color: #3C1053;
+    /* no photo on contact section */
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+  }
+
+  .contact-overlay {
+    position: absolute; inset: 0;
+    background: rgba(60,16,83,0.78);
+  }
+
+  .contact-inner {
+    position: relative; z-index: 2;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 2.25rem;
+    width: 100%;
+  }
+
+  .section-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #C9A84C;
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+
+  .btn {
+    display: flex; align-items: center; gap: 14px;
+    width: 100%; padding: 1rem 1.25rem;
+    border-radius: 10px; border: none; cursor: pointer;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif; font-size: 14px;
+    font-weight: 500; letter-spacing: 0.02em;
+    transition: opacity 0.15s, transform 0.15s;
+    margin-bottom: 0.75rem;
+  }
+  .btn:last-of-type { margin-bottom: 0; }
+  .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn:active { transform: scale(0.98); }
+
+  .btn-whatsapp { background: #25D366; color: #fff; }
+  .btn-email    { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(201,168,76,0.5); }
+
+  .btn-icon {
+    width: 38px; height: 38px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.15); flex-shrink: 0;
+  }
+  .btn-text { text-align: left; flex: 1; }
+  .btn-sublabel { font-size: 11px; opacity: 0.65; font-weight: 400; display: block; }
+  .btn-name     { font-size: 14px; font-weight: 600; display: block; }
+  .btn-arrow    { opacity: 0.4; font-size: 18px; }
+
+  /* ─── FORM ─── */
+  .form-section {
+    position: relative;
+    overflow: hidden;
+    background-color: #F7F4EF;
+    background-image: url('https://res.cloudinary.com/det6fmvma/image/upload/v1776944533/balade-pinasse-lege-cap-ferret_fpmsso.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 2rem 1.5rem 2.5rem;
+    max-width: 520px; margin: 0 auto; width: 100%;
+  }
+  .form-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(247,244,239,0.88);
+    z-index: 0;
+  }
+  .form-section > * { position: relative; z-index: 1; }
+
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600;
+    color: #3C1053; margin-bottom: 0.25rem;
+  }
+  .form-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 15px;
+    color: #C9A84C; margin-bottom: 1.5rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+
+  label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #8A8A8A;
+  }
+  input, select, textarea {
+    width: 100%; padding: 0.75rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid rgba(60,16,83,0.14);
+    background: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; color: #1E1A34;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    -webkit-appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: #C9A84C;
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+  }
+  textarea { resize: none; height: 80px; }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%233C1053' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px; cursor: pointer;
+  }
+
+  .submit-btn {
+    width: 100%; padding: 1rem;
+    background: #3C1053; color: #fff; border: none;
+    border-radius: 10px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.15s;
+    margin-top: 1rem;
+  }
+  .submit-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .toast {
+    display: none;
+    background: #fff; border-left: 3px solid #C9A84C;
+    color: #3C1053;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 15px;
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin-top: 0.75rem;
+  }
+
+  /* ─── FOOTER LINKS ─── */
+  .footer-links {
+    background: #F7F4EF;
+    padding: 1.25rem;
+    display: flex; justify-content: center; gap: 0.75rem;
+    border-top: 1px solid rgba(60,16,83,0.08);
+    max-width: 520px; margin: 0 auto; width: 100%;
+  }
+  .footer-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0.5rem 1rem; border-radius: 30px;
+    border: 1px solid rgba(60,16,83,0.16);
+    font-family: 'Jost', sans-serif; font-size: 12px;
+    font-weight: 500; color: #3C1053; text-decoration: none;
+    transition: background 0.15s;
+  }
+  .footer-link:hover { background: #E8E0D0; }
+
+  /* ─── PHOTO FOOTER ─── */
+  .photo-footer {
+    position: relative;
+    overflow: hidden;
+    background-color: #1E1A34;
+    background-image: var(--photo-footer);
+    background-size: cover;
+    background-position: center;
+    min-height: 80px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .photo-footer-overlay {
+    position: absolute; inset: 0;
+    background: rgba(60,16,83,0.72);
+  }
+  .photo-footer-inner {
+    position: relative; z-index: 2;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .footer-logo { width: 90px; height: auto;  opacity: 0.85; margin-bottom: 1rem; }
+  .legal-text {
+    font-family: 'Jost', sans-serif; font-size: 10px;
+    color: rgba(255,255,255,0.35); line-height: 1.9; letter-spacing: 0.03em;
+  }
+  .legal-gold { color: rgba(201,168,76,0.55); }
+
+  @media (max-width: 400px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img class="logo-img" src="https://res.cloudinary.com/det6fmvma/image/upload/v1781254279/logo_vertical_blanc_fond_transparent_ffkc0g.png" alt="My Private French Travel" />
+    <div class="gold-line"></div>
+    <p class="hero-intro">
+      At My Private French Travel, we curate <em>unique experiences and stays</em> across the South West of France.<br><br>
+      Book a day tour, join a signature experience, or let us design your own personalised journey.
+    </p>
+  </div>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<div class="contact-section">
+  <div class="contact-overlay"></div>
+  <div class="contact-inner">
+    <div class="section-label">Get in touch</div>
+
+    <a class="btn btn-whatsapp" href="https://wa.me/message/FA2PQN53QYDTP1" target="_blank" rel="noopener">
+      <div class="btn-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-sublabel">Chat with us</span>
+        <span class="btn-name">WhatsApp</span>
+      </div>
+      <span class="btn-arrow">→</span>
+    </a>
+
+    <a class="btn btn-email" href="mailto:contact@mpfrenchtravel.com?subject=Inquiry%20for%20more%20information" target="_blank" rel="noopener">
+      <div class="btn-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-sublabel">Send us an email</span>
+        <span class="btn-name">contact@mpfrenchtravel.com</span>
+      </div>
+      <span class="btn-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<!-- ═══ FORM ═══ -->
+<div class="form-section">
+  <div class="form-title">Plan your journey</div>
+  <div class="form-sub">Tell us more — we'll take care of the rest.</div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="f-name">Name</label>
+      <input type="text" id="f-name" placeholder="Jane Smith" autocomplete="name" />
+    </div>
+    <div class="form-group">
+      <label for="f-dest">Destination</label>
+      <select id="f-dest">
+        <option value="">Select…</option>
+        <option>Bordeaux & Médoc</option>
+        <option>Basque Country</option>
+        <option>Cognac & Charentes</option>
+        <option>Gascony</option>
+        <option>Multi-region</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="f-email">Email</label>
+      <input type="email" id="f-email" placeholder="you@email.com" autocomplete="email" />
+    </div>
+    <div class="form-group">
+      <label for="f-phone">Phone / WhatsApp</label>
+      <input type="tel" id="f-phone" placeholder="+1 212 000 0000" autocomplete="tel" />
+    </div>
+  </div>
+
+  <div class="form-group" style="margin-bottom:0.75rem">
+    <label for="f-type">Type of experience</label>
+    <select id="f-type">
+      <option value="">Select…</option>
+      <option>Day tour or half-day experience</option>
+      <option>Multi-day private stay</option>
+      <option>MICE / incentive group</option>
+      <option>Private event or celebration</option>
+      <option>Not sure yet — advise me</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="f-msg">Your message</label>
+    <textarea id="f-msg" placeholder="Dates, group size, any special occasion…"></textarea>
+  </div>
+
+  <button class="submit-btn" onclick="handleSubmit()">Send Enquiry</button>
+  <div class="toast" id="toast">Thank you — we'll be in touch very soon.</div>
+</div>
+
+<!-- ═══ FOOTER LINKS ═══ -->
+<div class="footer-links">
+  <a class="footer-link" href="https://www.myprivatefrenchtravel.com" target="_blank" rel="noopener">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    Website
+  </a>
+  <a class="footer-link" href="https://www.instagram.com/mpfrenchtravel" target="_blank" rel="noopener">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    Instagram
+  </a>
+</div>
+
+
+<!-- ═══ BANNERS ═══ -->
+<div style="width:100%; max-width:1040px; margin:0 auto; display:flex; flex-wrap:wrap; line-height:0;">
+  <img src="https://res.cloudinary.com/det6fmvma/image/upload/v1781254694/Newsletter_BREVO_html_header_uuepmr.png"
+       alt="My Private French Travel"
+       style="width:50%; min-width:320px; flex:1; height:auto; display:block;" />
+  <img src="https://res.cloudinary.com/det6fmvma/image/upload/v1781254939/Newsletter_BREVO_html_header_1_b8nx0w.png"
+       alt="My Private French Travel"
+       style="width:50%; min-width:320px; flex:1; height:auto; display:block;" />
+</div>
+
+<!-- ═══ PHOTO FOOTER ═══ -->
+<div class="photo-footer">
+  <div class="photo-footer-overlay"></div>
+  <div class="photo-footer-inner">
+    <img class="footer-logo" src="https://res.cloudinary.com/det6fmvma/image/upload/v1781254279/logo_vertical_blanc_fond_transparent_ffkc0g.png" alt="My Private French Travel" />
+    <div class="legal-text">
+      My Private French Travel — MP Séjour et Expériences<br>
+      9 rue de Condé, bureau 3 · 33000 Bordeaux<br>
+      <span class="legal-gold">Licence Atout France N° IM033170015 · Membre APST · RCP HISCOX</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function handleSubmit() {
+  var name  = document.getElementById('f-name').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  var phone = document.getElementById('f-phone').value.trim();
+  var dest  = document.getElementById('f-dest').value;
+  var type  = document.getElementById('f-type').value;
+  var msg   = document.getElementById('f-msg').value.trim();
+  if (!name || (!email && !phone)) {
+    alert('Please fill in your name and at least one contact detail.');
+    return;
+  }
+  var subject = encodeURIComponent('Travel Enquiry — ' + (dest || 'Southwest France'));
+  var body = encodeURIComponent(
+    'Name: ' + name + '\nEmail: ' + (email||'—') + '\nPhone/WhatsApp: ' + (phone||'—') +
+    '\nDestination: ' + (dest||'—') + '\nType: ' + (type||'—') + '\n\n' + (msg||'')
+  );
+  window.open('mailto:contact@mpfrenchtravel.com?subject=' + subject + '&body=' + body);
+  document.getElementById('toast').style.display = 'block';
+  ['f-name','f-email','f-phone','f-dest','f-type','f-msg'].forEach(function(id){ document.getElementById(id).value=''; });
+}
+</script>
+</body>
+</html>
